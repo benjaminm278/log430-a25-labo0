@@ -9,7 +9,8 @@ class Calculator:
 
     def get_hello_message(self):
         """ Show welcome message """
-        return "== Calculatrice v1.0 =="
+        # return "== Calculatrice v1.0 =="
+        return "Calculatrice"
 
     def addition(self, v1, v2):
         """ Add 2 values """
