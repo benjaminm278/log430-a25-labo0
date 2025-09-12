@@ -18,4 +18,4 @@ def test_addition():
 
 def test_multiplication():
     my_calculator = Calculator()
-    assert Calculator.multiplication(my_calculator, 5, 3) == 5
+    assert Calculator.multiplication(my_calculator, 5, 3) == 15
