@@ -25,18 +25,3 @@ jobs:
         run: |
           cd src
           python3 -m pytest
-
-      - name: Préparer la connexion SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      - name: Déployer l'application dans la machine virtuelle
-        run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.IP_ADDRESS }} "
-            git clone https://github.com/benjaminm278/log430-a25-labo0
-            cd log430-a25-labo0
-            docker build -t labo0-calculator .
-            docker run -it labo0-calculator
-          "

@@ -1,0 +1,28 @@
+name: example_CI
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dépot
+        uses: actions/checkout@v3
+
+      - name: Préparer la connexion SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Déployer l'application dans la machine virtuelle
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.IP_ADDRESS }} "
+            git clone https://github.com/benjaminm278/log430-a25-labo0
+            cd log430-a25-labo0
+            docker build -t labo0-calculator .
+            docker run -it labo0-calculator
+          "
