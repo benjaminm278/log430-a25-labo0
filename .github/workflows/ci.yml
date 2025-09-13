@@ -32,7 +32,7 @@ jobs:
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-      - name: Déployer l'application
+      - name: Déployer l'application dans la machine virtuelle
         run: |
           ssh ${{ secrets.USERNAME }}@${{ secrets.IP_ADDRESS }} "
             git clone https://github.com/benjaminm278/log430-a25-labo0
