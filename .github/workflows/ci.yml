@@ -25,3 +25,12 @@ jobs:
         run: |
           cd src
           python3 -m pytest
+
+      - name: Déployer l'application
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          IP_ADDRESS: ${{ secrets.IP_ADDRESS }}
+        run: |
+          ssh $USERNAME@$IP_ADDRESS
+          git clone https://github.com/benjaminm278/log430-a25-labo0
+          cd log430-a25-labo0      
