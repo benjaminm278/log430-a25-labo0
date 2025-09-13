@@ -26,11 +26,15 @@ jobs:
           cd src
           python3 -m pytest
 
-      - name: Déployer l'application
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          IP_ADDRESS: ${{ secrets.IP_ADDRESS }}
+      - name: Préparer le SSH
         run: |
-          ssh $USERNAME@$IP_ADDRESS
-          git clone https://github.com/benjaminm278/log430-a25-labo0
-          cd log430-a25-labo0      
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Déployer l'application
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.IP_ADDRESS }} "
+            git clone https://github.com/benjaminm278/log430-a25-labo0
+            cd log430-a25-labo0
+          "
