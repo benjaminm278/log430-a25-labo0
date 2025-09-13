@@ -26,7 +26,7 @@ jobs:
           cd src
           python3 -m pytest
 
-      - name: Préparer le SSH
+      - name: Préparer la connexion SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
